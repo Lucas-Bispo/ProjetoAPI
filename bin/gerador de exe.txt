@@ -1,0 +1,2 @@
+dart2native bin/my_app.dart -o bin/my_app
+./bin/my_app
