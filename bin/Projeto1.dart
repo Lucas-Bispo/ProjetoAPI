@@ -11,13 +11,14 @@ void menu(){
   print('\n Selecione uma das opções abaixo:');
   print('1 - Ver a cotação de hoje');
   print('2 - Registrar a cotação de hoje');//
-
+  print('3 - Ver cotações registradas');
 
   String option = stdin.readLineSync(); //os dados do teclado como string
 
   switch(int.parse(option)){//parse converte para interiro
     case 1: today(); break;
     case 2: registerData(); break;
+    case 3: listData(); break;
     default : print('\n\nOps, opção inválida. Selecione uma opção válida!\n\n'); menu(); break;
     //caso dê erro chama o menu de novo
   }
@@ -53,6 +54,19 @@ registerData() async{//pegar dados e colocar em um arquivo
   else
   print('\n\n########################### Resgistro não adicionado, já esistente um log financeiro de hoje cadastrado ###########################\n\n');
 
+
+}
+
+listData() {
+  dynamic fileData = readFile();
+  fileData = (fileData != null && fileData.length > 0 ? json.decode(fileData) : List());
+
+  print('\n\n################# Listagem dos dados #################');
+
+  fileData.forEach((data) {
+
+  print('${data['date']} -> ${data['data']}');
+});
 
 }
 
